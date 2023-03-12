@@ -659,12 +659,15 @@ def export():
     #s.to_excel(fln)
 
     tree_columns = ["S/N", "NAME", "DESIGNATION", "TIN", "MONTHS WORKED", "MONTHLY GROSS INCOME", "ANNUAL GROSS INCOME", "RELIEF ALLOWANCE", "PENSION", "NATIONAL HOUSING FUND", "NHIS", "GRATUITIES", "TAXABLE INCOME", "ANNUAL TAX DUE", "MONTHLY TAX DUE"]
-    treeview_df = pd.DataFrame(columns=tree_columns)
+    # treeview_df = pd.DataFrame(columns=tree_columns)
+    treeview_df = list()
 
     for row in tree.get_children():
         values = pd.DataFrame([tree.item(row)["values"]], columns=tree_columns)
 
-        treeview_df = treeview_df.append(values)
+        # treeview_df = treeview_df.append(values)
+        treeview_df.append(values)
+        treeview_df = pd.concat(treeview_df)
 
 
     #xlwt_write = pd.io.excel.get_writer("xlwt")
